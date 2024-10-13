@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!--==================== METADATOS ====================-->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="description" content="Effects">
+  <meta name="keywords" content="HTML-CSS-JS">
+  <meta name="author" content="Rocio Cuello">
+
+  <!--==================== CSS ====================-->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <!--==================== TITULO ====================-->
+  <title>Effects | Liquid Blast Effects</title>
+
+  <!--==================== ICONO DE PESTAÑA ====================-->
+  <link rel="icon" sizes="64x64" href="assets/img/favicon.webp"> 
+</head>
+<body>
+  <div class="circle"></div> 
+  <svg>
+    <filter id="gooey">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10"/>
+      <feColorMatrix values="1 0 0 0 0
+                            0 1 0 0 0
+                            0 0 1 0 0
+                            0 0 0 50 -10"/>
+    </filter>
+  </svg>
+  
+  <!--==================== script ====================-->
+  <script>
+    let circle = document.querySelector('.circle');
+    circle.addEventListener('click', function() {
+      for (let i = 0; i < 50; i++) {
+        let particle = document.createElement('i'); // Cambié 'particles' a 'div'
+        particle.classList.add('particles'); // Asigna la clase 'particles'
+        document.body.appendChild(particle);
+        
+        let randomX = (Math.random() - 0.5) * window.innerWidth;
+        let randomY = (Math.random() - 0.5) * window.innerHeight;
+        
+        particle.style.setProperty('--x', randomX + 'px');
+        particle.style.setProperty('--y', randomY + 'px');
+  
+        let randomSize = Math.random() * 60 + 10;
+        particle.style.width = randomSize + 'px';
+        particle.style.height = randomSize + 'px';
+  
+        let duration = Math.random() * 2;
+        particle.style.animation = `animate ${duration}s ease forwards`;
+  
+        setTimeout(function() {
+          particle.remove();
+        }, 5000);
+      }
+    });
+  </script>
+</body>
+</html>
